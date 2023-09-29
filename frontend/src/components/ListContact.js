@@ -6,17 +6,19 @@ const ListContact = () => {
   const [getDatas, setDatas] = useState([]);
 
   useEffect(() => {
-    console.log("get all data from API contact");
+    console.log("get all datas from API contacts");
     axios({
       method: "GET",
       url: "http://localhost:8000/api/contacts",
-    }).then((results) => {
-      setDatas(results.data.payload);
+    }).then((resutls) => {
+      console.log(resutls);
+      setDatas(resutls.data.payload);
     });
   }, []);
 
   return (
     <div>
+      {console.log("get all data ", getDatas)}
       <NavigationBar />
       <div style={{ marginTop: 65 }}>
         <div className="container-fluid">
@@ -37,12 +39,12 @@ const ListContact = () => {
                     {getDatas.map((data, index) => {
                       return (
                         <tr key={index}>
-                          <th>{index + 1}</th>
-                          <td>{data.fullname}</td>
-                          <td>{data.phone}</td>
+                          <th> {index + 1} </th>
+                          <td> {data.name} </td>
+                          <td> {data.phone} </td>
                           <td>
                             <div className="row">
-                              <div className="col-10">{data.note}</div>
+                              <div className="col-10"> {data.note} </div>
                               <div className="col-1">
                                 <span
                                   style={{ cursor: "pointer" }}

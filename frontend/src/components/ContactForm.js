@@ -3,12 +3,12 @@ import NavigationBar from "./NavigationBar";
 import axios from "axios";
 
 const ContactForm = () => {
-  const [getFullName, setFullName] = useState("");
-  const [getPhone, setPhone] = useState("");
-  const [getNote, setNote] = useState("");
+  const [gateName, setName] = useState("");
+  const [gatePhone, setPhone] = useState("");
+  const [gateNote, setNote] = useState("");
 
-  const inputHandlerFullName = (fullname) => {
-    return setFullName(fullname);
+  const inputHandlerName = (name) => {
+    return setName(name);
   };
 
   const inputHandlerPhone = (phone) => {
@@ -22,22 +22,21 @@ const ContactForm = () => {
   function saveContact() {
     axios({
       method: "POST",
-      url: "http://localhost:3001/api/contacts",
+      url: "http://localhost:8000/api/contacts",
       data: {
-        fullname: getFullName,
-        phone: getPhone,
-        note: getNote,
+        name: gateName,
+        phone: gatePhone,
+        note: gateNote,
       },
-    }).then((results) => {
-      console.log(results);
-      if(results.data.payload.affectedRows){
-        alert("data berhasil ditambahkan ✅");
+    }).then((resutls) => {
+      console.log(resutls);
+      if (resutls.data.payload.affectedRows) {
+        alert("Contact berhasil ditambahkan ✔");
         window.location.href = "/list-contact";
-      }else{
-        alert("data gagal ditambahkan ❌");
-        window.location.reload();
+      } else {
+        alert("Contact gagal ditambahkan ❎");
       }
-    })
+    });
   }
 
   return (
@@ -47,14 +46,14 @@ const ContactForm = () => {
         <div className="container">
           <div className="row">
             <div className="col-sm m-10">
-              <label htmlFor="fullname" className="required">
+              <label htmlFor="name" className="required">
                 Nama Lengkap
               </label>
               <input
                 type="text"
                 className="form-control"
                 required="required"
-                onChange={(e) => inputHandlerFullName(e.target.value)}
+                onChange={(e) => inputHandlerName(e.target.value)}
               />
             </div>
             <div className="col-sm m-10">
