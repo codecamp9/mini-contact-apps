@@ -3,7 +3,6 @@
 
 # Fitur Utama
  - **Tambah Kontak**: Tambahkan kontak baru dengan nama, nomor telepon, dan catatan lainnya.
- - **Lihat Kontak**: Lihat daftar kontak yang telah Kalian tambahkan.
  - **Edit Kontak**: Edit atau perbarui informasi kontak yang sudah ada.
  - **Hapus Kontak**: Hapus kontak yang tidak diperlukan dari daftar Kalin.
 
