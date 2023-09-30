@@ -17,4 +17,12 @@ router.post("/contacts", (req, res) => {
   contact.add(req, res);
 });
 
+router.delete("/contacts/:id", (req, res) => {
+  contact.drop(req, res);
+});
+
+router.patch("/contacts/:id", (req, res) => {
+  contact.edit(req, res);
+});
+
 module.exports = router;
