@@ -20,6 +20,16 @@ exports.add = (req, res) => {
   });
 };
 
+exports.show = (req, res) => {
+  const query = `SELECT * FROM contacts WHERE id = ${req.params.id}`;
+  db.query(query, (err, results) => {
+    res.json({
+      status: 200,
+      payload: results,
+    });
+  });
+};
+
 exports.drop = (req, res) => {
   const query = `DELETE FROM contacts WHERE id = ${req.params.id}`;
   db.query(query, (err, results) => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ListContact = () => {
@@ -15,6 +16,32 @@ const ListContact = () => {
       setDatas(resutls.data.payload);
     });
   }, []);
+
+  function edit(id) {
+    axios({
+      method: "GET",
+      url: `http://localhost:8000/api/contacts/${id}`,
+    }).then((resutls) => {
+      console.log("datas buat edit ", resutls);
+    });
+  }
+
+  function hapus(id) {
+    const isConfrim = window.confirm("Yakin ingin menghapus kontak ini?");
+
+    if (isConfrim) {
+      axios({
+        method: "DELETE",
+        url: `http://localhost:8000/api/contacts/${id}`,
+      }).then((resutls) => {
+        if (resutls.data.payload.affectedRows) {
+          window.location.reload();
+        } else {
+          alert("gagal di hapus ❎");
+        }
+      });
+    }
+  }
 
   return (
     <div>
@@ -46,17 +73,19 @@ const ListContact = () => {
                             <div className="row">
                               <div className="col-10"> {data.note} </div>
                               <div className="col-1">
-                                <span
-                                  style={{ cursor: "pointer" }}
-                                  onClick={() => console.log("edit!")}
-                                >
-                                  🔍
-                                </span>
+                                <Link to={`/edit-contact/${data.id}`}>
+                                  <span
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => edit(data.id)}
+                                  >
+                                    🔍
+                                  </span>
+                                </Link>
                               </div>
                               <div className="col-1">
                                 <span
                                   style={{ cursor: "pointer" }}
-                                  onClick={() => console.log("hapus!")}
+                                  onClick={() => hapus(data.id)}
                                 >
                                   ❌
                                 </span>

@@ -31,7 +31,6 @@ const ContactForm = () => {
     }).then((resutls) => {
       console.log(resutls);
       if (resutls.data.payload.affectedRows) {
-        alert("Contact berhasil ditambahkan ✔");
         window.location.href = "/list-contact";
       } else {
         alert("Contact gagal ditambahkan ❎");

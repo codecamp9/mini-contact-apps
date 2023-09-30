@@ -13,6 +13,10 @@ router.get("/contacts", (req, res) => {
   contact.getAll(req, res);
 });
 
+router.get("/contacts/:id", (req, res) => {
+  contact.show(req, res);
+});
+
 router.post("/contacts", (req, res) => {
   contact.add(req, res);
 });
