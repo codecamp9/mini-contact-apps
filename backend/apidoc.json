@@ -1,0 +1,311 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Mini Contact Apps",
+    "description": "OpenApi for mini contact apps",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Ahmad Ramadani",
+      "email": "ahmadrammadanii@gmail.com",
+      "url": "https://github.com/Ramadani-coding"
+    }
+  },
+  "servers": [
+    {
+      "description": "OpenApi for mini contact apps",
+      "url": "localhost:8000/api"
+    }
+  ],
+  "paths": {
+    "/contacts": {
+      "get": {
+        "tags": ["Contact"],
+        "summary": "Get All Contact",
+        "description": "digunakan untuk mengambil seluruh data kontak yang tersedia.",
+        "responses": {
+          "200": {
+            "description": "Daftar data berhasil diambil",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "payload": [
+                    {
+                      "id": 32,
+                      "name": "rama",
+                      "phone": "081256735163",
+                      "note": "SMK3"
+                    },
+                    {
+                      "id": 33,
+                      "name": "andi",
+                      "phone": "0812516535163",
+                      "note": "RPL 2"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Contact"],
+        "summary": "Create Contact",
+        "description": "digunakan untuk membuat kontak baru.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "examples": {
+                "rama": {
+                  "value": {
+                    "name": "Ahmad Ramadani",
+                    "phone": "085141687652",
+                    "note": "RPL 1"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "minimum": 200,
+                    "maximum": 200
+                  },
+                  "payload": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "pattern": "^\\d{10,13}$"
+                        },
+                        "note": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name", "phone"],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": ["status", "payload"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": 200,
+                      "payload": {
+                        "fieldCount": 0,
+                        "affectedRows": 1,
+                        "insertId": 29,
+                        "serverStatus": 2,
+                        "warningCount": 0,
+                        "message": "",
+                        "protocol41": true,
+                        "changedRows": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "failed": {
+                    "value": {
+                      "status": 400,
+                      "payload": {
+                        "message": "format data salah"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "put": {
+        "tags": ["Contact"],
+        "summary": "Update Contact",
+        "description": "digunakan untuk mengedit kontak",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "examples": {
+                "rama": {
+                  "value": {
+                    "name": "Rama SMK3",
+                    "phone": "085141687652",
+                    "note": "temen smk dulu 1 kelas"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "minimum": 200,
+                    "maximum": 200
+                  },
+                  "payload": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "pattern": "^\\d{10,13}$"
+                        },
+                        "note": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": ["status", "payload"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contactId",
+            "description": "id kontak untuk diedit",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": 200,
+                      "payload": {
+                        "fieldCount": 0,
+                        "affectedRows": 1,
+                        "insertId": 29,
+                        "serverStatus": 2,
+                        "warningCount": 0,
+                        "message": "",
+                        "protocol41": true,
+                        "changedRows": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "failed": {
+                    "value": {
+                      "status": 400,
+                      "payload": {
+                        "message": "format data salah"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Contact"],
+        "summary": "Delete Contact",
+        "description": "digunakan untuk menghapus kontak.",
+        "parameters": [
+          {
+            "name": "contactId",
+            "description": "id kontak untuk dihapus",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": 200,
+                      "payload": {
+                        "fieldCount": 0,
+                        "affectedRows": 1,
+                        "insertId": 29,
+                        "serverStatus": 2,
+                        "warningCount": 0,
+                        "message": "",
+                        "protocol41": true,
+                        "changedRows": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "failed": {
+                    "value": {
+                      "status": 404,
+                      "payload": {
+                        "message": "contact tidak ditemukan"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
