@@ -7,7 +7,7 @@
  - **Hapus Kontak**: Hapus kontak yang tidak diperlukan dari daftar Kalin.
 
 # Visit Apps
-**Documentation API:** https://app.swaggerhub.com/apis-docs/ramacode/api-mini_contact_apps/1.0.0
+**Documentation API:** https://api-codecamp.cyclic.cloud/api-docs/
 
 # Teknologi
 Aplikasi ini dibangun menggunakan teknologi berikut:
