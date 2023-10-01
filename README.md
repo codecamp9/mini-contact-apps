@@ -7,7 +7,7 @@
  - **Hapus Kontak**: Hapus kontak yang tidak diperlukan dari daftar Kalin.
 
 # Visit Apps
-**Documentation API:** https://api-codecamp.cyclic.cloud/api-docs/
+https://mini-contact-apps-codecamp.vercel.app/
 
 # Teknologi
 Aplikasi ini dibangun menggunakan teknologi berikut:
